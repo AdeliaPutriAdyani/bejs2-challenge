@@ -14,7 +14,7 @@ module.exports = {
       if (!source_account_id || !destination_account_id || isNaN(amount) || amount <= 0) {
         return res.status(400).json({
           status: false,
-          message: "Invalid input data",
+          message: "Data Tidak Valid",
           data: null,
         });
       }
@@ -26,7 +26,7 @@ module.exports = {
       if (!sourceAccount) {
         return res.status(404).json({
           status: false,
-          message: "Source account ID not found",
+          message: "Id asal tidak ditemukan",
           data: null,
         });
       }
@@ -38,7 +38,7 @@ module.exports = {
       if (!destinationAccount) {
         return res.status(404).json({
           status: false,
-          message: "Destination account ID not found",
+          message: "Id tujuan tidak ditemukan",
           data: null,
         });
       }
@@ -46,7 +46,7 @@ module.exports = {
       if (sourceAccount.balance < amount) {
         return res.status(400).json({
           status: false,
-          message: "Insufficient balance",
+          message: "Saldo tidak mencukupi",
           data: null,
         });
       }
@@ -73,9 +73,8 @@ module.exports = {
         data: transaction
       });
     } catch (error) {
-      console.error("Error: ", error);
       return res.status(500).json({
-        error: 'Failed to register transaction'
+        error: 'Gagal Membuat Transaksi'
       });
     }
   },
