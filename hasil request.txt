@@ -1,10 +1,10 @@
 POST  http://localhost:5000/api/v1/users
 data yang dimasukkan :
 {
-    "name": "jen",
-    "email": "jenjen@gmail.com",
-    "password": "735",
-    "identity_number": "735",
+    "name": "ady",
+    "email": "ady@gmail.com",
+    "password": "7359",
+    "identity_number": "7359",
     "identity_type": "KTP",
     "address": "JL mawar"
 }
@@ -12,10 +12,10 @@ data yang dimasukkan :
 hasil : 
 {
   "data": {
-    "id": 8,
-    "name": "jen",
-    "email": "jenjen@gmail.com",
-    "password": "735"
+    "id": 3,
+    "name": "ady",
+    "email": "ady@gmail.com",
+    "password": "7359"
   }
 }
 
@@ -24,38 +24,38 @@ GET http://localhost:5000/api/v1/users
   "data": [
     {
       "id": 1,
-      "name": "Adel",
-      "email": "adelia@gmail.com",
-      "password": "123456"
+      "name": "adel",
+      "email": "adel@gmail.com",
+      "password": "735"
     },
     {
       "id": 2,
-      "name": "Adeng",
+      "name": "adeng",
       "email": "adeng@gmail.com",
-      "password": "123456"
+      "password": "735"
     },
     {
       "id": 3,
-      "name": "Adeng",
-      "email": "adeng@gmail.com",
-      "password": "123456"
+      "name": "ady",
+      "email": "ady@gmail.com",
+      "password": "7359"
     }
   ]
 }
 
-GET http://localhost:5000/api/v1/users/2
+GET http://localhost:5000/api/v1/users/3
 {
   "data": {
-    "id": 2,
-    "name": "Adeng",
-    "email": "adeng@gmail.com",
-    "password": "123456",
+    "id": 3,
+    "name": "ady",
+    "email": "ady@gmail.com",
+    "password": "7359",
     "profile": {
-      "id": 2,
-      "identity_type": "B",
-      "identity_number": "123456789",
-      "address": "testing",
-      "user_id": 2
+      "id": 3,
+      "identity_type": "KTP",
+      "identity_number": "7359",
+      "address": "JL mawar",
+      "user_id": 3
     }
   }
 }
@@ -63,20 +63,21 @@ GET http://localhost:5000/api/v1/users/2
 POST  http://localhost:5000/api/v1/accounts
 data yang dimasukkan :
 {
-  "user_id": 8,
-  "bank_name": "Bank Permata",
-  "bank_account_number": "735", 
+  "user_id": 3,
+  "bank_name": "Bank BCA",
+  "bank_account_number": "8888", 
   "balance": "100000"
 }
+
 
 hasil :
 {
   "data": {
-    "id": 21,
-    "bank_name": "Bank Permata",
-    "bank_account_number": "735",
+    "id": 3,
+    "bank_name": "Bank BCA",
+    "bank_account_number": "8888",
     "balance": 100000,
-    "user_id": 8
+    "user_id": 3
   }
 }
 
@@ -85,22 +86,22 @@ GET http://localhost:5000/api/v1/accounts
   "data": [
     {
       "id": 1,
-      "bank_name": "BNI",
-      "bank_account_number": "123456",
-      "balance": 10000,
+      "bank_name": "Bank Permata",
+      "bank_account_number": "735",
+      "balance": 95000,
       "user_id": 1
     },
     {
-      "id": 15,
-      "bank_name": "Bank BCA",
-      "bank_account_number": "1234567890",
-      "balance": 10000,
+      "id": 2,
+      "bank_name": "Bank MANDIRI",
+      "bank_account_number": "777",
+      "balance": 105000,
       "user_id": 2
     },
     {
-      "id": 16,
-      "bank_name": "BNI",
-      "bank_account_number": "12345677",
+      "id": 3,
+      "bank_name": "Bank BCA",
+      "bank_account_number": "8888",
       "balance": 100000,
       "user_id": 3
     }
@@ -110,22 +111,22 @@ GET http://localhost:5000/api/v1/accounts
 GET http://localhost:5000/api/v1/accounts/1
 {
   "data": {
-    "id": 1,
-    "bank_name": "BNI",
-    "bank_account_number": "123456",
-    "balance": 10000,
-    "user_id": 1,
+    "id": 3,
+    "bank_name": "Bank BCA",
+    "bank_account_number": "8888",
+    "balance": 100000,
+    "user_id": 3,
     "user": {
-      "id": 1,
-      "name": "Adel",
-      "email": "adelia@gmail.com",
-      "password": "123456",
+      "id": 3,
+      "name": "ady",
+      "email": "ady@gmail.com",
+      "password": "7359",
       "profile": {
-        "id": 1,
-        "identity_type": "A",
-        "identity_number": "123456789",
-        "address": "testing",
-        "user_id": 1
+        "id": 3,
+        "identity_type": "KTP",
+        "identity_number": "7359",
+        "address": "JL mawar",
+        "user_id": 3
       }
     }
   }
@@ -134,18 +135,18 @@ GET http://localhost:5000/api/v1/accounts/1
 POST  http://localhost:5000/api/v1/transactions
 data yang dimasukkan :
 {
-  "source_account_id": 21,
-  "destination_account_id": 21,
-  "amount": 5000
+  "source_account_id": 2,
+  "destination_account_id": 3,
+  "amount": 10000
 }
 
 hasil : 
 {
   "data": {
-    "id": 33,
-    "source_account_id": 21,
-    "destination_account_id": 21,
-    "amount": 5000
+    "id": 2,
+    "source_account_id": 2,
+    "destination_account_id": 3,
+    "amount": 10000
   }
 }
 
@@ -153,22 +154,16 @@ GET http://localhost:5000/api/v1/transactions
 {
   "data": [
     {
-      "id": 2,
+      "id": 1,
       "source_account_id": 1,
-      "destination_account_id": 1,
-      "amount": 500
+      "destination_account_id": 2,
+      "amount": 5000
     },
     {
-      "id": 10,
-      "source_account_id": 15,
-      "destination_account_id": 15,
-      "amount": 500
-    },
-    {
-      "id": 11,
-      "source_account_id": 16,
-      "destination_account_id": 16,
-      "amount": 500
+      "id": 2,
+      "source_account_id": 2,
+      "destination_account_id": 3,
+      "amount": 10000
     }
   ]
 }
@@ -177,23 +172,23 @@ GET http://localhost:5000/api/v1/transactions/10
 hasil :
 {
   "data": {
-    "id": 10,
-    "source_account_id": 15,
-    "destination_account_id": 15,
-    "amount": 500,
+    "id": 2,
+    "source_account_id": 2,
+    "destination_account_id": 3,
+    "amount": 10000,
     "source_account": {
-      "id": 15,
-      "bank_name": "Bank BCA",
-      "bank_account_number": "1234567890",
-      "balance": 10000,
+      "id": 2,
+      "bank_name": "Bank MANDIRI",
+      "bank_account_number": "777",
+      "balance": 95000,
       "user_id": 2
     },
     "destination_account": {
-      "id": 15,
+      "id": 3,
       "bank_name": "Bank BCA",
-      "bank_account_number": "1234567890",
-      "balance": 10000,
-      "user_id": 2
+      "bank_account_number": "8888",
+      "balance": 110000,
+      "user_id": 3
     }
   }
 }
