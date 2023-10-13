@@ -108,7 +108,7 @@ GET http://localhost:5000/api/v1/accounts
   ]
 }
 
-GET http://localhost:5000/api/v1/accounts/1
+GET http://localhost:5000/api/v1/accounts/3
 {
   "data": {
     "id": 3,
@@ -168,7 +168,7 @@ GET http://localhost:5000/api/v1/transactions
   ]
 }
 
-GET http://localhost:5000/api/v1/transactions/10
+GET http://localhost:5000/api/v1/transactions/2
 hasil :
 {
   "data": {
