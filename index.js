@@ -4,7 +4,7 @@ require('dotenv').config()
 const PORT = process.env.PORT || 3000
 const router = require('./routers')
 const swaggerUi = require('swagger-ui-express')
-const swaggerJson = {}
+const swaggerJson = require('./openapi.json')
 
 app.use(express.json());
 app.use('/documentation', swaggerUi.serve, swaggerUi.setup(swaggerJson))
