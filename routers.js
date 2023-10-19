@@ -3,13 +3,17 @@ const router = express.Router()
 const userController = require('./controllers/userControllers')
 const accountController = require('./controllers/accountControllers')
 const transactionController = require('./controllers/transactionControllers')
-// const transactionControllers = require('./controllers/transactionControllers')
+const checkToken = require('./middleware/checkToken')
 
 router.get('/', (req, res) => {
     return res.json({
         massage: "Hello World"
     })
 })
+
+router.post('/auth/register', userController.registerUser)
+router.post('/auth/login', userController.loginUser)
+router.get('/auth/authenticate', checkToken, userController.getProfile)
 
 router.post('/users', userController.registerUser)
 router.get('/users', userController.getUser)
