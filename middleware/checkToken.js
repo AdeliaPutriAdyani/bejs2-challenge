@@ -9,8 +9,8 @@ const checkToken = (req, res, next) => {
         })
     }
 
-    if(token.toLowerCase().startsWith('bearer')){
-        token = token.slice('bearer'.length).trim()
+    if(token.toLowerCase().startsWith('bearer ')){
+        token = token.slice('bearer '.length).trim()
     }
 
     const jwtPayload = jwt.verify(token, 'secret_key')
