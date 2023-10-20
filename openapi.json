@@ -92,7 +92,7 @@
         "summary": "Menampilkan Semua List Data User",
         "responses": {
           "200": {
-            "description": "Berhasil Mendapatkan Semua Data User",
+            "description": "Mendapatkan Semua Data User",
             "content": {
               "application/json": {
                 "schema": {
@@ -439,10 +439,15 @@
           "auth"
         ],
         "summary": "Menampilan Profile User Login",
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ],
         "parameters": [
           {
-            "in": "query",
-            "name": "Authorization",
+            "in": "headers",
+            "name": "authorization",
             "required": true,
             "schema": {
               "type": "string"
