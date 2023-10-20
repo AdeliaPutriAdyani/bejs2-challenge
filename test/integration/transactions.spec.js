@@ -7,16 +7,16 @@ let account = {};
 let transaction = {};
 
 describe("test POST /api/v1/transaction endpoint", () => {
-  test(" Berhasil: Transaksi berhasil dibuat.", async () => {
+  test("Berhasil: Transaksi berhasil dibuat.", async () => {
     const data = {
       userId: 1,
       source_account_id: 1,
       destination_account_id: 2,
       amount: 1000,
     };
-    let { statusCode, body } = await request(app)
+    const { statusCode, body } = await request(app)
       .post("/api/v1/transactions")
-      .send({data});
+      .send(data);
     transaction = body.data;
 
     expect(statusCode).toBe(201);
@@ -57,11 +57,11 @@ describe("test GET /api/v1/transactions endpoint", () => {
 });
 
 describe("test GET /api/v1/transactions/{id} endpoint", () => {
-  test(" Berhasil: Test mencari transaksi dengan ID yang terdaftar.", async () => {
+  test("Berhasil: Test mencari transaksi dengan ID yang terdaftar.", async () => {
     try {
       const transactionId = transaction.id;
       const { statusCode, body } = await request(app).get(
-        `/api/v1/transactions/${transactionId.id}`
+        `/api/v1/transactions/${transactionId}`
       );
 
       expect(statusCode).toBe(200);
@@ -71,29 +71,29 @@ describe("test GET /api/v1/transactions/{id} endpoint", () => {
       expect(body.data).toHaveProperty("source_account_id");
       expect(body.data).toHaveProperty("destination_account_id");
       expect(body.data).toHaveProperty("amount");
-      expect(body.data.amount).toBe(data.amount);
-      expect(body.data.source_account_id.bank_name).toBe(data.bank_name);
-      expect(body.data.source_account_id.bank_account_number).toBe(data.bank_account_number);
-      expect(body.data.source_account_id.balance).toBe(data.balance);
-      expect(body.data.destination_account_id.bank_name).toBe(data.bank_name);
-      expect(body.data.destination_account_id.bank_account_number).toBe(data.bank_account_number);
-      expect(body.data.destination_account_id.balance).toBe(data.balance);
+      expect(body.data.amount).toBe(transaction.amount);
+      expect(body.data.source_account_id.bank_name).toBe(transaction.source_account_id.bank_name);
+      expect(body.data.source_account_id.bank_account_number).toBe(transaction.source_account_id.bank_account_number);
+      expect(body.data.source_account_id.balance).toBe(transaction.source_account_id.balance);
+      expect(body.data.destination_account_id.bank_name).toBe(transaction.destination_account_id.bank_name);
+      expect(body.data.destination_account_id.bank_account_number).toBe(transaction.destination_account_id.bank_account_number);
+      expect(body.data.destination_account_id.balance).toBe(transaction.destination_account_id.balance);
     } catch (err) {
       expect(err).toBe(err);
     }
   });
 
-      test("Gagal: Test mencari transaksi dengan ID yang tidak terdaftar.", async () => {
-        try {
-          const { statusCode, body } = await request(app).get(
-            `/api/v1/transactions/${transactionId + 1000}`
-          );
+  test("Gagal: Test mencari transaksi dengan ID yang tidak terdaftar.", async () => {
+    try {
+      const { statusCode, body } = await request(app).get(
+        `/api/v1/transactions/${transaction.id + 1000}`
+      );
 
-          expect(statusCode).toBe(400);
-          expect(body).toHaveProperty("status");
-          expect(body).toHaveProperty("message");
-        } catch (err) {
-          expect(err).toBe(err);
-        }
-      });
+      expect(statusCode).toBe(400);
+      expect(body).toHaveProperty("status");
+      expect(body).toHaveProperty("message");
+    } catch (err) {
+      expect(err).toBe(err);
+    }
+  });
 });

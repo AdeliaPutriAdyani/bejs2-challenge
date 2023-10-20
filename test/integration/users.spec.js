@@ -1,5 +1,8 @@
 const app = require("../../app");
 const request = require("supertest");
+const { PrismaClient } = require("@prisma/client");
+const prisma = new PrismaClient();
+let user = {};
 
 describe("test POST /api/v1/users endpoint", () => {
   test("test email belum terdaftar -> sukses", async () => {

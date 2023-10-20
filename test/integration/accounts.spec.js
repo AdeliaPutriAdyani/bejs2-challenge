@@ -31,7 +31,7 @@ describe("test POST /api/v1/accounts endpoint", () => {
     expect(response.body.data.balance).toBe(data.balance);
   });
 
-  test("Error: test userId belum terdaftar ", async () => {
+  test("Error: test userId belum terdaftar", async () => {
     const data = {
       userId: 0,
       bank_name: "Bank BTN",
@@ -46,7 +46,7 @@ describe("test POST /api/v1/accounts endpoint", () => {
 });
 
 describe("test GET /api/v1/accounts endpoint", () => {
-  test("berhasil : menampilkan semua data", async () => {
+  test("berhasil: menampilkan semua data", async () => {
     const { statusCode, body } = await request(app).get("/api/v1/accounts");
 
     expect(statusCode).toBe(200);
@@ -57,11 +57,11 @@ describe("test GET /api/v1/accounts endpoint", () => {
 });
 
 describe("test GET /api/v1/accounts/{id} endpoint", () => {
-  test(" berhasil : test cari account dengan id yang terdaftar", async () => {
+  test("berhasil: test cari account dengan id yang terdaftar", async () => {
     try {
       const accountId = account.id;
       const { statusCode, body } = await request(app).get(
-        `/api/v1/users/${accountId}`
+        `/api/v1/accounts/${accountId}`
       );
 
       expect(statusCode).toBe(200);
@@ -72,26 +72,26 @@ describe("test GET /api/v1/accounts/{id} endpoint", () => {
       expect(body.data).toHaveProperty("bank_name");
       expect(body.data).toHaveProperty("bank_account_number");
       expect(body.data).toHaveProperty("balance");
-      expect(body.data.userId).toBe(data.userId);
-      expect(body.data.bank_name).toBe(data.bank_name);
-      expect(body.data.bank_account_number).toBe(data.bank_account_number);
-      expect(body.data.balance).toBe(data.balance);
+      expect(body.data.userId).toBe(account.userId); 
+      expect(body.data.bank_name).toBe(account.bank_name); 
+      expect(body.data.bank_account_number).toBe(account.bank_account_number); 
+      expect(body.data.balance).toBe(account.balance); 
     } catch (err) {
-      expect(err).toBe(err);
+      fail(err); 
     }
   });
 
-    test("failed : test cari account dengan id yang tidak terdaftar", async () => {
-      try {
-        const { statusCode, body } = await request(app).get(
-          `/api/v1/accounts/${account.id + 1000}`
-        );
+  test("failed: test cari account dengan id yang tidak terdaftar", async () => {
+    try {
+      const { statusCode, body } = await request(app).get(
+        `/api/v1/accounts/${account.id + 1000}`
+      );
 
-        expect(statusCode).toBe(400);
-        expect(body).toHaveProperty("status");
-        expect(body).toHaveProperty("message");
-      } catch (err) {
-        expect(err).toBe(err);
-      }
-    });
+      expect(statusCode).toBe(400);
+      expect(body).toHaveProperty("status");
+      expect(body).toHaveProperty("message");
+    } catch (err) {
+      fail(err); 
+    }
+  });
 });
