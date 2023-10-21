@@ -14,6 +14,7 @@ describe("test POST /api/v1/transaction endpoint", () => {
       destination_account_id: 2,
       amount: 1000,
     };
+
     const { statusCode, body } = await request(app)
       .post("/api/v1/transactions")
       .send(data);
@@ -38,6 +39,7 @@ describe("test POST /api/v1/transaction endpoint", () => {
       bank_account_number: "123456789",
       balance: 350000,
     };
+    
     const response = await request(app).post("/api/v1/accounts").send(data);
     expect(response.statusCode).toBe(400);
     expect(response.body).toHaveProperty("status");
