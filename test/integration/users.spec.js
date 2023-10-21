@@ -77,7 +77,7 @@ describe("test GET /api/v1/users endpoint", () => {
 
 describe("test GET /api/v1/users/{id} endpoint", () => {
   test("test cari user dengan id yang terdaftar -> sukses", async () => {
-    const response = await request(app).get("/api/v1/users/1"); // Ganti 1 dengan ID yang benar
+    const response = await request(app).get("/api/v1/users/1"); 
 
     expect(response.statusCode).toBe(200);
     expect(response.body).toHaveProperty("status");
@@ -86,8 +86,8 @@ describe("test GET /api/v1/users/{id} endpoint", () => {
   });
 
   test("test cari user dengan id yang tidak terdaftar -> error", async () => {
-    const response = await request(app).get("/api/v1/users/9999"); // Ganti 9999 dengan ID yang tidak terdaftar
-
+    const response = await request(app).get("/api/v1/users/9999"); 
+    
     expect(response.statusCode).toBe(400);
     expect(response.body).toHaveProperty("status");
     expect(response.body).toHaveProperty("message");
